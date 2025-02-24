@@ -90,8 +90,8 @@ void dependentFuture() {
 
       DDI.instance.destroy<C>();
 
-      expect(() async => DDI.instance.get<C>(),
-          throwsA(isA<BeanNotFoundException>()));
+      expect(
+          () => DDI.instance.get<C>(), throwsA(isA<BeanNotFoundException>()));
     });
 
     test('Create, get and remove a qualifier bean', () async {
@@ -143,7 +143,7 @@ void dependentFuture() {
         () async {
       DDI.instance
           .registerDependent(() async => A(await DDI.instance.getAsync()));
-      DDI.instance.registerDependent<B>(() async => B(DDI.instance()));
+      DDI.instance.registerDependent<B>(() => B(DDI.instance()));
       DDI.instance.registerDependent(C.new);
 
       final instance1 = await DDI.instance.getAsync<A>();

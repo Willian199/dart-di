@@ -71,7 +71,7 @@ void factoryCircularDetection() {
       //This works because it was just registered
       ddi.register<Father>(
         factory: ScopeFactory.application(
-          builder: () async {
+          builder: () {
             return Future.delayed(const Duration(milliseconds: 10),
                 () async => Father(mother: await ddi.getAsync<Mother>()));
           }.builder,
@@ -80,7 +80,7 @@ void factoryCircularDetection() {
 
       ddi.register<Mother>(
         factory: ScopeFactory.application(
-          builder: () async {
+          builder: () {
             return Future.delayed(const Duration(milliseconds: 10),
                 () async => Mother(father: await ddi.getAsync<Father>()));
           }.builder,
@@ -95,7 +95,7 @@ void factoryCircularDetection() {
         () async {
       ddi.register<Father>(
         factory: ScopeFactory.application(
-          builder: () async {
+          builder: () {
             return Future.delayed(const Duration(milliseconds: 10),
                 () async => Father(mother: await ddi.getAsync<Mother>()));
           }.builder,
@@ -104,14 +104,14 @@ void factoryCircularDetection() {
 
       ddi.register<Mother>(
         factory: ScopeFactory.application(
-          builder: () async {
+          builder: () {
             return Future.delayed(const Duration(milliseconds: 10),
                 () async => Mother(father: await ddi.getAsync<Father>()));
           }.builder,
         ),
       );
 
-      await expectLater(() async => ddi.getAsync<Mother>(),
+      await expectLater(() => ddi.getAsync<Mother>(),
           throwsA(isA<ConcurrentCreationException>()));
 
       ddi.destroy<Mother>();
@@ -122,7 +122,7 @@ void factoryCircularDetection() {
         () async {
       ddi.register<Father>(
         factory: ScopeFactory.dependent(
-          builder: () async {
+          builder: () {
             return Future.delayed(const Duration(milliseconds: 10),
                 () async => Father(mother: await ddi.getAsync<Mother>()));
           }.builder,
@@ -131,14 +131,14 @@ void factoryCircularDetection() {
 
       ddi.register<Mother>(
         factory: ScopeFactory.dependent(
-          builder: () async {
+          builder: () {
             return Future.delayed(const Duration(milliseconds: 10),
                 () async => Mother(father: await ddi.getAsync<Father>()));
           }.builder,
         ),
       );
 
-      await expectLater(() async => ddi.getAsync<Mother>(),
+      await expectLater(() => ddi.getAsync<Mother>(),
           throwsA(isA<ConcurrentCreationException>()));
 
       ddi.destroy<Mother>();

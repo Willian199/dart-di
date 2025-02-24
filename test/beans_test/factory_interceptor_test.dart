@@ -159,8 +159,8 @@ void factoryInterceptor() {
         factory: ScopeFactory.singleton(
           builder: D.new.builder,
           decorators: [
-            (instance) => E(instance),
-            (instance) => F(instance),
+            (D instance) => E(instance),
+            (D instance) => F(instance),
           ],
           interceptors: {K},
         ),
@@ -195,8 +195,8 @@ void factoryInterceptor() {
         factory: ScopeFactory.application(
           builder: D.new.builder,
           decorators: [
-            (instance) => E(instance),
-            (instance) => F(instance),
+            (D instance) => E(instance),
+            (D instance) => F(instance),
           ],
           interceptors: {K},
         ),

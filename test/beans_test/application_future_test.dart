@@ -180,7 +180,7 @@ void applicationFuture() {
     test('Register and retrieve Future Application', () async {
       DDI.instance
           .registerApplication(() async => A(await DDI.instance.getAsync<B>()));
-      DDI.instance.registerApplication(() async => B(DDI.instance()));
+      DDI.instance.registerApplication(() => B(DDI.instance()));
       DDI.instance.registerApplication(C.new);
 
       final instance1 = await DDI.instance.getAsync<A>();
@@ -209,9 +209,9 @@ void applicationFuture() {
       await expectLater(intance.value, 1);
     });
 
-    test('Try to retrieve Application bean using Future', () async {
+    test('Try to retrieve Application bean using Future', () {
       DDI.instance.registerApplication(() async => A(await DDI.instance()));
-      DDI.instance.registerApplication(() async => B(DDI.instance()));
+      DDI.instance.registerApplication(() => B(DDI.instance()));
       DDI.instance.registerApplication(C.new);
 
       //This happens because A(await DDI.instance()) transform to A(await DDI.instance<FutureOr<B>>())
@@ -226,7 +226,7 @@ void applicationFuture() {
     test('Register and retrieve Application bean using FutureOr', () async {
       DDI.instance
           .registerApplication(() async => A(await DDI.instance.getAsync()));
-      DDI.instance.registerApplication<B>(() async => B(DDI.instance()));
+      DDI.instance.registerApplication<B>(() => B(DDI.instance()));
       DDI.instance.registerApplication(C.new);
 
       final instance1 = await DDI.instance.getAsync<A>();
@@ -246,7 +246,7 @@ void applicationFuture() {
         () async {
       DDI.instance
           .registerApplication(() async => A(await DDI.instance.getAsync<B>()));
-      DDI.instance.registerApplication<B>(() async => B(DDI.instance()));
+      DDI.instance.registerApplication<B>(() => B(DDI.instance()));
       DDI.instance.registerApplication(C.new);
 
       final instance1 = await DDI.instance.getAsync<A>();

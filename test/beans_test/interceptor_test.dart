@@ -178,8 +178,8 @@ void interceptor() {
       DDI.instance.registerSingleton(
         () => D(),
         decorators: [
-          (instance) => E(instance),
-          (instance) => F(instance),
+          (D instance) => E(instance),
+          (D instance) => F(instance),
         ],
         interceptors: {K},
       );
@@ -203,6 +203,11 @@ void interceptor() {
 
       expect(DDI.instance.isRegistered<D>(), false);
       expect(DDI.instance.isRegistered<J>(), false);
+    });
+
+    test('ADD Interceptor to a Bean not registered', () {
+      expect(() => ddi.addInterceptor<D>({}),
+          throwsA(isA<BeanNotFoundException>()));
     });
   });
 }

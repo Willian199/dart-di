@@ -103,11 +103,11 @@ void disposeDestroyAllSession() {
 
       DDI.instance.destroyAllSession();
 
-      expect(() async => DDI.instance.getAsync<A>(),
+      expect(() => DDI.instance.getAsync<A>(),
           throwsA(isA<BeanNotFoundException>()));
-      expect(() async => DDI.instance.getAsync<B>(),
+      expect(() => DDI.instance.getAsync<B>(),
           throwsA(isA<BeanNotFoundException>()));
-      expect(() async => DDI.instance.getAsync<C>(),
+      expect(() => DDI.instance.getAsync<C>(),
           throwsA(isA<BeanNotFoundException>()));
     });
   });

@@ -267,7 +267,7 @@ void applicationFactoryFuture() {
       await expectLater(intance.value, 1);
     });
 
-    test('Try to retrieve Factory Application bean using Future', () async {
+    test('Try to retrieve Factory Application bean using Future', () {
       DDI.instance.register(
         factory: ScopeFactory.application(
           builder: () async {

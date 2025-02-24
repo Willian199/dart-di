@@ -534,8 +534,10 @@ class _DDIImpl implements DDI {
   }
 
   @override
-  void addChildrenModules<BeanT extends Object>(
-      {required Set<Object> child, Object? qualifier}) {
+  void addChildrenModules<BeanT extends Object>({
+    required Set<Object> child,
+    Object? qualifier,
+  }) {
     final Object effectiveQualifierName = qualifier ?? BeanT;
 
     if (_beans[effectiveQualifierName]

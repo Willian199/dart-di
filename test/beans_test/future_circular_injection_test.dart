@@ -35,7 +35,7 @@ void futureCircularDetection() {
       DDI.instance.registerApplication<Mother>(() async =>
           Future.value(Mother(father: await DDI.instance.getAsync<Father>())));
 
-      expectLater(() async => DDI.instance.getAsync<Mother>(),
+      expectLater(() => DDI.instance.getAsync<Mother>(),
           throwsA(isA<ConcurrentCreationException>()));
 
       DDI.instance.destroy<Mother>();
@@ -49,7 +49,7 @@ void futureCircularDetection() {
       DDI.instance.registerDependent<Mother>(() async =>
           Future.value(Mother(father: await DDI.instance.getAsync<Father>())));
 
-      expectLater(() async => DDI.instance.getAsync<Mother>(),
+      expectLater(() => DDI.instance.getAsync<Mother>(),
           throwsA(isA<ConcurrentCreationException>()));
 
       DDI.instance.destroy<Mother>();

@@ -12,9 +12,9 @@ import 'package:dart_ddi/src/typedef/typedef.dart';
 ///   FutureOr<void> onPostConstruct(){
 ///     print('do something after construct or register the childrens beans');
 ///
-///     registerApplication<MyEvent>(MyEvent.new);
-///     registerSingleton<OtherEvent>(OtherEvent.new);
-///     registerDependent<SimpleEvent>(SimpleEvent.new);
+///     registerApplication<MyService>(MyService.new);
+///     registerSingleton<MyRepository>(MyRepository.new);
+///     registerDependent<MyCase>(MyCase.new);
 ///   }
 /// }
 /// ```

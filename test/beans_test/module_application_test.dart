@@ -25,5 +25,14 @@ void moduleApplicationTest() {
       expect(
           () => DDI.instance.get<C>(), throwsA(isA<BeanNotFoundException>()));
     });
+
+    test('Add ChildrenModules to a Bean not Registered', () {
+      expect(() => ddi.addChildrenModules<C>(child: {A}),
+          throwsA(isA<BeanNotFoundException>()));
+    });
+
+    test('Get Children from a Bean not Registered', () {
+      expect(ddi.getChildren<C>(), Set.of({}));
+    });
   });
 }

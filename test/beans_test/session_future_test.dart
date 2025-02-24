@@ -142,7 +142,7 @@ void sessionFuture() {
 
       DDI.instance.destroy<C>();
 
-      expect(() async => DDI.instance.getAsync<C>(),
+      expect(() => DDI.instance.getAsync<C>(),
           throwsA(isA<BeanNotFoundException>()));
     });
 
@@ -153,7 +153,7 @@ void sessionFuture() {
 
       DDI.instance.destroy(qualifier: 'typeC');
 
-      expect(() async => DDI.instance.getAsync(qualifier: 'typeC'),
+      expect(() => DDI.instance.getAsync(qualifier: 'typeC'),
           throwsA(isA<BeanNotFoundException>()));
     });
 
@@ -188,7 +188,7 @@ void sessionFuture() {
         () async {
       DDI.instance
           .registerSession(() async => A(await DDI.instance.getAsync()));
-      DDI.instance.registerSession<B>(() async => B(DDI.instance()));
+      DDI.instance.registerSession<B>(() => B(DDI.instance()));
       DDI.instance.registerSession(C.new);
 
       final instance1 = await DDI.instance.getAsync<A>();

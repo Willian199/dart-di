@@ -1,5 +1,6 @@
 import 'package:dart_ddi/dart_ddi.dart';
 import 'package:dart_ddi/src/exception/bean_not_found.dart';
+import 'package:dart_ddi/src/exception/factory_not_allowed.dart';
 import 'package:test/test.dart';
 
 void object() {
@@ -81,6 +82,18 @@ void object() {
       expect(false, identical(instance2, instance3));
 
       DDI.instance.destroy(qualifier: 'name');
+    });
+
+    test('Try to register an Object with default register function', () {
+      expect(
+          () => DDI.instance.register(
+              factory: ScopeFactory.object(instanceHolder: 'Value test')),
+          throwsA(isA<FactoryNotAllowedException>()));
+    });
+
+    test('Try to refresh an Object not registered', () {
+      expect(() => DDI.instance.refreshObject("new value"),
+          throwsA(isA<BeanNotFoundException>()));
     });
   });
 }

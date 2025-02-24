@@ -4,7 +4,7 @@ import 'dart:async';
 ///
 /// Example:
 /// ```dart
-/// class MyEvent with PreDispose {
+/// class MyService with PreDispose {
 ///
 ///   @override
 ///   FutureOr<void> onPreDispose(){

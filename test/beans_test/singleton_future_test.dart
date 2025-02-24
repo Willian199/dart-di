@@ -129,7 +129,7 @@ void singletonFuture() {
         'Retrieve Singleton bean after a "child" bean is disposed using Future',
         () async {
       DDI.instance.registerSingleton(C.new);
-      await DDI.instance.registerSingleton<B>(() async => B(DDI.instance()));
+      await DDI.instance.registerSingleton<B>(() => B(DDI.instance()));
       await DDI.instance
           .registerSingleton(() async => A(await DDI.instance.getAsync()));
 

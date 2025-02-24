@@ -80,7 +80,6 @@ linter:
     test_types_in_equals: true
     unnecessary_statements: true
     unrelated_type_equality_checks: true
-    unsafe_html: true
     valid_regexps: true
     always_use_package_imports: true
     avoid_dynamic_calls: false

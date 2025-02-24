@@ -9,6 +9,7 @@ import '../clazz_samples/i.dart';
 import '../clazz_samples/j.dart';
 import '../clazz_samples/logger_future_interceptor.dart';
 import '../clazz_samples/logger_interceptor.dart';
+import '../clazz_samples/with_destroy_interceptor.dart';
 
 void interceptorFeatures() {
   group('DDI Feature Interceptor Tests', () {
@@ -133,6 +134,31 @@ void interceptorFeatures() {
       expect(() => ddi.get<G>(), throwsA(isA<BeanNotFoundException>()));
       expect(ddi.isRegistered<J>(), false);
       expect(ddi.isRegistered<LoggerInterceptor>(), false);
+    });
+
+    test('ADD Future Interceptor with destroy onGet', () async {
+      await ddi.register(
+        factory: ScopeFactory.singleton(
+          builder: () async {
+            await Future.delayed(const Duration(milliseconds: 200));
+            return WithDestroyInterceptor();
+          }.builder,
+        ),
+      );
+
+      ddi.registerApplication<G>(H.new, interceptors: {WithDestroyInterceptor});
+
+      expect(ddi.isRegistered<G>(), true);
+
+      final G instance = await ddi.getAsync<G>();
+
+      expect(ddi.isRegistered<G>(), false);
+
+      expect(instance.area(), 10);
+
+      await ddi.destroy<WithDestroyInterceptor>();
+
+      expect(ddi.isRegistered<WithDestroyInterceptor>(), false);
     });
   });
 }

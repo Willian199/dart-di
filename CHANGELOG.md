@@ -1,4 +1,8 @@
+## 0.11.0
 
+* Break changes:
+    * Moved events to it's own package `event_ddi`.
+    * Removed support for `DDIStream`.
 
 ## 0.10.1
 * Fixed web and wasm support.

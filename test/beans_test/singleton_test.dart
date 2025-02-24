@@ -1,6 +1,7 @@
 import 'package:dart_ddi/dart_ddi.dart';
 import 'package:dart_ddi/src/exception/bean_not_found.dart';
 import 'package:dart_ddi/src/exception/duplicated_bean.dart';
+import 'package:dart_ddi/src/exception/factory_not_allowed.dart';
 import 'package:test/test.dart';
 
 import '../clazz_samples/a.dart';
@@ -114,6 +115,36 @@ void singleton() {
 
       expect(() => ddi.registerSingleton(() => SingletonDestroyRegister()),
           throwsA(isA<DuplicatedBeanException>()));
+    });
+
+    test('Fail register with custom factory without scope builder', () {
+      expect(
+          () => ddi.register(
+                factory: ScopeFactory.singleton(),
+              ),
+          throwsA(isA<FactoryNotAllowedException>()));
+    });
+
+    test('Fail register a Object type value', () {
+      expect(
+          () => ddi.register<Object>(
+                factory: SingletonDestroyRegister.new.builder.asSingleton(),
+              ),
+          throwsA(isA<FactoryNotAllowedException>()));
+    });
+
+    test('Verify if a Bean not registered is Future', () {
+      expect(
+          () => ddi.isFuture<Object>(), throwsA(isA<BeanNotFoundException>()));
+    });
+
+    test('Verify if a Bean not registered is Ready', () {
+      expect(
+          () => ddi.isReady<Object>(), throwsA(isA<BeanNotFoundException>()));
+    });
+
+    test('Disponse a Bean not registered', () {
+      expect(() => ddi.dispose<A>(), throwsA(isA<BeanNotFoundException>()));
     });
   });
 }

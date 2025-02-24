@@ -4,7 +4,7 @@ import 'dart:async';
 ///
 /// Example:
 /// ```dart
-/// class MyEvent with PostConstruct {
+/// class MyService with PostConstruct {
 ///
 ///   @override
 ///   FutureOr<void> onPostConstruct(){

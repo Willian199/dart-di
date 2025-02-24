@@ -4,7 +4,7 @@ import 'dart:async';
 ///
 /// Example:
 /// ```dart
-/// class MyEvent with PreDestroy {
+/// class MyService with PreDestroy {
 ///
 ///   @override
 ///   FutureOr<void> onPreDestroy(){

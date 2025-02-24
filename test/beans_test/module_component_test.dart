@@ -74,5 +74,14 @@ void moduleComponentTest() {
       expect(() => DDI.instance.get(qualifier: 'first'),
           throwsA(isA<BeanNotFoundException>()));
     });
+
+    test('Try to register a Component without Module', () {
+      expect(
+          () => ddi.registerComponent(
+                clazzRegister: () => const Component('parent'),
+                moduleQualifier: ParentModule,
+              ),
+          throwsA(isA<ModuleNotFoundException>()));
+    });
   });
 }

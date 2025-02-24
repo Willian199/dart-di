@@ -34,9 +34,9 @@ void runByFutureType() {
       DDI.instance.disposeByType<G>();
       DDI.instance.destroyByType<G>();
 
-      expect(() async => DDI.instance.getAsync(qualifier: keys2[0]),
+      expect(() => DDI.instance.getAsync(qualifier: keys2[0]),
           throwsA(isA<BeanNotFoundException>()));
-      expect(() async => DDI.instance.getAsync(qualifier: keys2[1]),
+      expect(() => DDI.instance.getAsync(qualifier: keys2[1]),
           throwsA(isA<BeanNotFoundException>()));
     });
 
@@ -62,9 +62,9 @@ void runByFutureType() {
       DDI.instance.disposeByType<G>();
       DDI.instance.destroyByType<G>();
 
-      expect(() async => DDI.instance.get(qualifier: keys2[0]),
+      expect(() => DDI.instance.get(qualifier: keys2[0]),
           throwsA(isA<BeanNotFoundException>()));
-      expect(() async => DDI.instance.get(qualifier: keys2[1]),
+      expect(() => DDI.instance.get(qualifier: keys2[1]),
           throwsA(isA<BeanNotFoundException>()));
     });
 
@@ -89,9 +89,9 @@ void runByFutureType() {
       DDI.instance.disposeByType<G>();
       DDI.instance.destroyByType<G>();
 
-      expect(() async => DDI.instance.get(qualifier: keys2[0]),
+      expect(() => DDI.instance.get(qualifier: keys2[0]),
           throwsA(isA<BeanNotFoundException>()));
-      expect(() async => DDI.instance.get(qualifier: keys2[1]),
+      expect(() => DDI.instance.get(qualifier: keys2[1]),
           throwsA(isA<BeanNotFoundException>()));
     });
 
@@ -117,9 +117,9 @@ void runByFutureType() {
       DDI.instance.disposeByType<G>();
       DDI.instance.destroyByType<G>();
 
-      expect(() async => DDI.instance.get(qualifier: keys2[0]),
+      expect(() => DDI.instance.get(qualifier: keys2[0]),
           throwsA(isA<BeanNotFoundException>()));
-      expect(() async => DDI.instance.get(qualifier: keys2[1]),
+      expect(() => DDI.instance.get(qualifier: keys2[1]),
           throwsA(isA<BeanNotFoundException>()));
     });
   });

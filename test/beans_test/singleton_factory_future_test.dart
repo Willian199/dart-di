@@ -159,7 +159,7 @@ void singletonFactoryFuture() {
       expect(instance1, same(instance2));
     });
 
-    test('Retrieve Factory Singleton with Custom Parameter', () async {
+    test('Retrieve Factory Singleton with Custom Parameter', () {
       expectLater(
           () => DDI.instance.register(
                 factory: ScopeFactory.singleton(

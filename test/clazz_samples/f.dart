@@ -1,7 +1,7 @@
 import 'd.dart';
 
 class F extends D {
-  F(instance) {
+  F(D instance) {
     super.value = '${instance.value.toString().replaceAll('e', '')}ghi';
   }
 }

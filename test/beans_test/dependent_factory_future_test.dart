@@ -112,8 +112,8 @@ void dependentFactoryFuture() {
 
       DDI.instance.destroy<C>();
 
-      expect(() async => DDI.instance.get<C>(),
-          throwsA(isA<BeanNotFoundException>()));
+      expect(
+          () => DDI.instance.get<C>(), throwsA(isA<BeanNotFoundException>()));
     });
 
     test('Create, get and remove a qualifier bean', () async {
